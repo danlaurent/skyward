@@ -5,12 +5,14 @@ export const background = {
 };
 
 export const text = {
-  primary: "#EFEFF3",
-  secondary: "#454D84",
+  light: "#EFEFF3",
+  primary: "#454D84",
+  secondary: "#777D6D",
   dark: "#263F4D",
 };
 
 export const button = {
   primary: "#A2FFFF",
   secondary: "#CCAAF2",
+  dark: "#0F3D56",
 };
