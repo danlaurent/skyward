@@ -1,12 +1,19 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   text: {
     color: "white",
+  },
+  separator: {
+    height: 16,
+  },
+  listContentContainerStyle: {
+    padding: 32,
+  },
+  footer: {
+    height: 64,
   },
 });

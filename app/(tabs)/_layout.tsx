@@ -1,12 +1,10 @@
 import { Tabs } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { BlurView } from "expo-blur";
-import { background } from "../../src/design/tokens/colors";
+import { background, text } from "../../src/design/tokens/colors";
 
 const TabsLayout = () => (
   <Tabs
     screenOptions={{
-      headerShown: false,
       tabBarStyle: {
         position: "absolute",
         borderTopRightRadius: 8,
@@ -14,13 +12,22 @@ const TabsLayout = () => (
         borderTopWidth: 0,
         backgroundColor: background.dark,
       },
-      tabBarBackground: () => <BlurView tint="dark" intensity={60} />,
+      headerStyle: {
+        backgroundColor: background.dark,
+        shadowColor: "transparent",
+      },
+      headerTitleStyle: {
+        color: text.secondary,
+      },
+      headerTitleAlign: "center",
+      tabBarActiveTintColor: text.secondary,
+      tabBarInactiveTintColor: text.light,
     }}
   >
     <Tabs.Screen
       name="(launches)/index"
       options={{
-        title: "Launches",
+        title: "Latest Launches",
         tabBarIcon: ({ size, color }) => (
           <MaterialIcons name="rocket" size={size} color={color} />
         ),
