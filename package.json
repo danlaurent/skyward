@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
+    "@shopify/flash-list": "1.6.3",
     "expo": "~50.0.6",
     "expo-blur": "~12.9.1",
     "expo-constants": "~15.4.5",
