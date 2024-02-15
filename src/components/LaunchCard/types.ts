@@ -1,7 +1,7 @@
 export interface ListItemProps {
   name: string;
   date: string;
-  missionTag: string;
-  favourite?: boolean;
+  missionTag?: string;
   launchImage?: string;
+  onPress?: () => void;
 }

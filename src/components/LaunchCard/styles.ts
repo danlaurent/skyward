@@ -1,12 +1,15 @@
 import { StyleSheet } from "react-native";
+import { background, text } from "../../design/tokens/colors";
+
+export const LAUNCH_CARD_HEIGHT = 168;
 
 export const styles = StyleSheet.create({
   container: {
     alignSelf: "stretch",
-    height: 168,
-    backgroundColor: "white",
+    height: LAUNCH_CARD_HEIGHT,
     borderRadius: 16,
     overflow: "hidden",
+    backgroundColor: background.primary,
   },
   backgroundImage: {
     justifyContent: "space-between",
@@ -20,26 +23,15 @@ export const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    color: "white",
+    color: text.light,
     fontWeight: "600",
     marginBottom: 4,
   },
   date: {
     fontSize: 16,
-    color: "white",
+    color: text.light,
   },
-  favouriteIcon: {
-    backgroundColor: "red",
-    width: 24,
-    height: 24,
-  },
-  missionTag: {
-    width: 42,
-    height: 42,
+  missionTagContainer: {
     alignSelf: "flex-end",
-  },
-  image: {
-    flex: 1,
-    width: "100%",
   },
 });
