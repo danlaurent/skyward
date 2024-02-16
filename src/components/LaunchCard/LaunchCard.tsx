@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, Pressable } from "react-native";
+import { View, ImageBackground, Pressable } from "react-native";
 import { styles } from "./styles";
 import { ListItemProps } from "./types";
 import { Section } from "../Section";
@@ -11,10 +11,14 @@ export const LaunchCard = ({
   launchImage,
   missionTag,
   onPress,
+  testID,
+  missionTagImageTestID,
+  imageBackgroundTestID,
 }: ListItemProps) => {
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable testID={testID} onPress={onPress} style={styles.container}>
       <ImageBackground
+        testID={imageBackgroundTestID}
         source={{
           uri:
             launchImage ||
@@ -29,6 +33,7 @@ export const LaunchCard = ({
           <MissionTag
             tagImage={missionTag}
             style={styles.missionTagContainer}
+            imageTestID={missionTagImageTestID}
           />
         )}
       </ImageBackground>

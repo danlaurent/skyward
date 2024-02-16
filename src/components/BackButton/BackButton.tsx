@@ -6,9 +6,15 @@ import { text } from "../../design/tokens/colors";
 
 export const BackButton = ({ onPress, style }: IconButtonProps) => (
   <Pressable
+    testID="backButton"
     onPress={onPress}
     style={StyleSheet.flatten([styles.container, style])}
   >
-    <MaterialIcons name="chevron-left" size={24} color={text.secondary} />
+    <MaterialIcons
+      testID="backButtonChevronLeft"
+      name="chevron-left"
+      size={24}
+      color={text.secondary}
+    />
   </Pressable>
 );

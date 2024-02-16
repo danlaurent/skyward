@@ -12,6 +12,7 @@ export const Launches = ({ launches }: LaunchesProps) => (
       data={launches}
       renderItem={({ item }) => (
         <LaunchCard
+          testID={`launch-${item.flight_number}`}
           name={item.mission_name}
           date={item.launch_date_local}
           missionTag={item.links.mission_patch_small}
@@ -19,10 +20,14 @@ export const Launches = ({ launches }: LaunchesProps) => (
           onPress={() => router.push(`launchDetails/${item.flight_number}`)}
         />
       )}
-      ItemSeparatorComponent={() => <View style={styles.separator} />}
+      ItemSeparatorComponent={() => (
+        <View testID="itemSeparator" style={styles.separator} />
+      )}
       estimatedItemSize={LAUNCH_CARD_HEIGHT}
       contentContainerStyle={styles.listContentContainerStyle}
-      ListFooterComponent={() => <View style={styles.footer} />}
+      ListFooterComponent={() => (
+        <View testID="listFooter" style={styles.footer} />
+      )}
     />
   </View>
 );

@@ -19,6 +19,7 @@ export const Layout = ({
       return (
         <View style={styles.pendingOrErrorContainer}>
           <ActivityIndicator
+            testID="loadingIndicator"
             size="large"
             color={text.secondary}
             style={styles.loadingIndicator}
@@ -40,7 +41,7 @@ export const Layout = ({
           <Text style={StyleSheet.flatten([styles.text, styles.errorText])}>
             Something went wrong
           </Text>
-          <Button label="Retry" onPress={onRetryPress} />
+          <Button testID="retryButton" label="Retry" onPress={onRetryPress} />
         </View>
       );
     }

@@ -4,4 +4,5 @@ import { ImageProps } from "expo-image";
 export interface MissionTagProps {
   tagImage: ImageProps["source"];
   style?: StyleProp<ViewStyle>;
+  imageTestID?: string;
 }

@@ -4,4 +4,7 @@ export interface ListItemProps {
   missionTag?: string;
   launchImage?: string;
   onPress?: () => void;
+  testID?: string;
+  missionTagImageTestID?: string;
+  imageBackgroundTestID?: string;
 }
