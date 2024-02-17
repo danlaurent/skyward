@@ -24,7 +24,7 @@ describe("LaunchCard", () => {
 
   it("should render name and date correctly", () => {
     const launchName = tree.getByText("Launch Name");
-    const launchDate = tree.getByText("2021-06-03T17:00:00Z");
+    const launchDate = tree.getByText("June 3, 2021 7:00 PM");
 
     expect(launchName).toBeDefined();
     expect(launchDate).toBeDefined();

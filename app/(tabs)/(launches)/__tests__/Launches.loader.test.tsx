@@ -61,8 +61,8 @@ describe("LaunchesLoader", () => {
 
       expect(tree.getByText("Crew-1")).toBeDefined();
       expect(tree.getByText("Crew-0")).toBeDefined();
-      expect(tree.getByText("2019-11-15T19:27:00-05:00")).toBeDefined();
-      expect(tree.getByText("2020-11-15T19:27:00-05:00")).toBeDefined();
+      expect(tree.getByText("November 16, 2019 1:27 AM")).toBeDefined();
+      expect(tree.getByText("November 16, 2020 1:27 AM")).toBeDefined();
     });
   });
 
@@ -71,7 +71,7 @@ describe("LaunchesLoader", () => {
 
     expect(tree.getByText("Crew-1")).toBeDefined();
     expect(tree.getByText("Crew-0")).toBeDefined();
-    expect(tree.getByText("2019-11-15T19:27:00-05:00")).toBeDefined();
-    expect(tree.getByText("2020-11-15T19:27:00-05:00")).toBeDefined();
+    expect(tree.getByText("November 16, 2019 1:27 AM")).toBeDefined();
+    expect(tree.getByText("November 16, 2020 1:27 AM")).toBeDefined();
   });
 });

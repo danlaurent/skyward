@@ -42,13 +42,13 @@ describe("LaunchDetailsLoader", () => {
   beforeAll(() => server.listen());
 
   afterEach(() => {
-    server.resetHandlers();
     jest.clearAllMocks();
   });
 
   afterAll(() => server.close());
 
   beforeEach(() => {
+    server.resetHandlers();
     mockFlightNumberParam("107");
     tree = renderWithProviders(<LaunchDetailsLoader />, { store });
   });
@@ -78,7 +78,7 @@ describe("LaunchDetailsLoader", () => {
     await waitForLoadingToFinish(tree);
 
     expect(tree.getByText("Crew-1")).toBeDefined();
-    expect(tree.getByText("2020-11-15T19:27:00-05:00")).toBeDefined();
+    expect(tree.getByText("November 16, 2020 1:27 AM")).toBeDefined();
     expect(
       tree.getByText("Kennedy Space Center Historic Launch Complex 39A")
     ).toBeDefined();

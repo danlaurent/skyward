@@ -16,10 +16,10 @@ describe("LaunchDetails", () => {
   });
 
   it("renders the launch details", () => {
-    const { getByText, getByTestId } = tree;
+    const { getByText } = tree;
 
     const missionName = getByText(launchMock.mission_name);
-    const missionDate = getByText(launchMock.launch_date_local);
+    const missionDate = getByText("November 16, 2020 1:27 AM");
     const launchSite = getByText(launchMock.launch_site.site_name_long);
     const rocket = getByText(launchMock.rocket.rocket_name);
 
