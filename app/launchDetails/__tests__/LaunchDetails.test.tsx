@@ -1,14 +1,21 @@
-import { RenderAPI, render } from "@testing-library/react-native";
+import { RenderAPI, fireEvent } from "@testing-library/react-native";
 import { LaunchDetails } from "../LaunchDetails";
 import { launchesMock } from "../../../src/__mocks__/launches";
+import { renderWithProviders } from "../../../src/utils/tests/renderWithProviders";
+import { store } from "../../../src/state/store";
+import { mockUseFavourites } from "../../../src/hooks/useFavourites/__mocks__/mockUseFavourites";
 
 const launchMock = launchesMock[0];
+const toggleFavouritesMock = jest.fn();
 
 describe("LaunchDetails", () => {
   let tree: RenderAPI;
 
   beforeEach(() => {
-    tree = render(<LaunchDetails launch={launchMock} />);
+    mockUseFavourites({ toggleFavourites: toggleFavouritesMock });
+    tree = renderWithProviders(<LaunchDetails launch={launchMock} />, {
+      store,
+    });
   });
 
   afterEach(() => {
@@ -27,5 +34,14 @@ describe("LaunchDetails", () => {
     expect(missionDate).toBeDefined();
     expect(launchSite).toBeDefined();
     expect(rocket).toBeDefined();
+  });
+
+  describe("when the favourite icon is pressed", () => {
+    it("calls the toggleFavourites function", () => {
+      const favouriteIcon = tree.getByTestId("FavouriteIcon");
+      fireEvent.press(favouriteIcon);
+
+      expect(toggleFavouritesMock).toHaveBeenCalledWith(launchMock);
+    });
   });
 });

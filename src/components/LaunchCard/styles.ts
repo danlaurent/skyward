@@ -34,4 +34,7 @@ export const styles = StyleSheet.create({
   missionTagContainer: {
     alignSelf: "flex-end",
   },
+  section: {
+    marginBottom: 0,
+  },
 });

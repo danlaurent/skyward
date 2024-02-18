@@ -11,8 +11,9 @@ export const Section = ({
   text,
   titleColor = defaultTitleColor,
   textColor = defaultTextColor,
+  style,
 }: SectionProps) => (
-  <View style={styles.section}>
+  <View style={StyleSheet.flatten([styles.section, style])}>
     <Text style={StyleSheet.flatten([styles.title, { color: titleColor }])}>
       {title}
     </Text>

@@ -1,5 +1,12 @@
-import { RenderAPI, render, waitFor } from "@testing-library/react-native";
+import {
+  RenderAPI,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react-native";
 import { LaunchCard } from "../LaunchCard";
+
+const onFavouritePressMock = jest.fn();
 
 describe("LaunchCard", () => {
   let tree: RenderAPI;
@@ -9,11 +16,14 @@ describe("LaunchCard", () => {
       <LaunchCard
         name="Launch Name"
         date="2021-06-03T17:00:00Z"
+        flightNumber={107}
         launchImage="https://live.staticflickr.com/65535/50631642722_3af8131c6f_o.jpg"
         missionTag="https://images2.imgbox.com/9a/96/nLppz9HW_o.png"
         onPress={jest.fn()}
         missionTagImageTestID="MyTag"
         imageBackgroundTestID="MyBackground"
+        onFavouritePress={onFavouritePressMock}
+        favourite={true}
       />
     );
   });
@@ -57,16 +67,27 @@ describe("LaunchCard", () => {
     ]);
   });
 
+  describe("when the favourite icon is pressed", () => {
+    it("should call the toggleFavourites function", () => {
+      const favouriteIcon = tree.getByTestId("FavouriteIcon");
+
+      fireEvent.press(favouriteIcon);
+      expect(onFavouritePressMock).toHaveBeenCalledWith(107);
+    });
+  });
+
   describe("when not provided with a launch image", () => {
     beforeEach(() => {
       tree = render(
         <LaunchCard
           name="Launch Name"
+          flightNumber={107}
           date="2021-06-03T17:00:00Z"
           missionTag="https://images2.imgbox.com/9a/96/nLppz9HW_o.png"
           onPress={jest.fn()}
           missionTagImageTestID="MyTag"
           imageBackgroundTestID="MyBackground"
+          onFavouritePress={onFavouritePressMock}
         />
       );
     });
