@@ -1,10 +1,17 @@
 import { http, HttpResponse, delay } from "msw";
 import { setupServer } from "msw/node";
 import { RenderAPI, fireEvent, waitFor } from "@testing-library/react-native";
-import { renderWithProviders } from "../../../../src/utils/tests/renderWithProviders";
-import { launchesMock } from "../../../../src/__mocks__/launches";
-import { store } from "../../../../src/state/store";
-import { LaunchesLoader } from "../Launches.loader";
+import { renderWithProviders } from "../../../utils/tests/renderWithProviders";
+import { launchesMock } from "../../../__mocks__/launches";
+import { store } from "../../../state/store";
+import { LaunchDetailsLoader } from "../LaunchDetails.loader";
+import * as expoRouter from "expo-router";
+
+const mockFlightNumberParam = (flightNumber: string) => {
+  jest.spyOn(expoRouter, "useLocalSearchParams").mockReturnValue({
+    flightNumber,
+  });
+};
 
 const waitForLoadingToFinish = async (tree: RenderAPI) => {
   await waitFor(() => {
@@ -14,36 +21,42 @@ const waitForLoadingToFinish = async (tree: RenderAPI) => {
 
 export const handlers = [
   http.get(
-    "https://api.spacexdata.com/v3/launches/past",
+    "https://api.spacexdata.com/v3/launches/107",
     async () => {
       await delay(150);
       return Response.error();
     },
     { once: true }
   ),
-  http.get("https://api.spacexdata.com/v3/launches/past", async () => {
+  http.get("https://api.spacexdata.com/v3/launches/107", async () => {
     await delay(150);
-    return HttpResponse.json(launchesMock);
+    return HttpResponse.json(launchesMock[0]);
   }),
 ];
 
 const server = setupServer(...handlers);
 
-describe("LaunchesLoader", () => {
+describe("LaunchDetailsLoader", () => {
   let tree: RenderAPI;
 
-  beforeAll(() => server.listen());
+  beforeAll(() => {
+    jest.useFakeTimers();
+    server.listen();
+  });
 
   beforeEach(() => {
     server.resetHandlers();
-    tree = renderWithProviders(<LaunchesLoader />, { store });
+    mockFlightNumberParam("107");
+    tree = renderWithProviders(<LaunchDetailsLoader />, { store });
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  afterAll(() => server.close());
+  afterAll(() => {
+    server.close();
+  });
 
   describe("when the request fails and the user clicks on retry", () => {
     it("retries the request", async () => {
@@ -56,22 +69,18 @@ describe("LaunchesLoader", () => {
       await waitFor(() => {
         expect(tree.getByText("Loading")).toBeDefined();
       });
-
-      await waitForLoadingToFinish(tree);
-
-      expect(tree.getByText("Crew-1")).toBeDefined();
-      expect(tree.getByText("Crew-0")).toBeDefined();
-      expect(tree.getByText("November 16, 2019 1:27 AM")).toBeDefined();
-      expect(tree.getByText("November 16, 2020 1:27 AM")).toBeDefined();
     });
   });
 
-  it("shows a loading and then renders the launches list when data is fetched", async () => {
+  it("renders the launch details when data is fetched", async () => {
     await waitForLoadingToFinish(tree);
 
     expect(tree.getByText("Crew-1")).toBeDefined();
-    expect(tree.getByText("Crew-0")).toBeDefined();
-    expect(tree.getByText("November 16, 2019 1:27 AM")).toBeDefined();
     expect(tree.getByText("November 16, 2020 1:27 AM")).toBeDefined();
+    expect(
+      tree.getByText("Kennedy Space Center Historic Launch Complex 39A")
+    ).toBeDefined();
+    expect(tree.getByText("Falcon 9")).toBeDefined();
+    expect(tree.getByText("SpaceX")).toBeDefined();
   });
 });

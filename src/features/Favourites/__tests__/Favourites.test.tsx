@@ -1,9 +1,8 @@
-import { Launches } from "../Launches";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import { Favourites } from "../Favourites";
+import { launchesMock } from "../../../__mocks__/launches";
 import { router } from "expo-router";
-import { launchesMock } from "../../../../src/__mocks__/launches";
-import { renderWithProviders } from "../../../../src/utils/tests/renderWithProviders";
-import { store } from "../../../../src/state/store";
+import { mockUseFavourites } from "../../../hooks/useFavourites/__mocks__/mockUseFavourites";
 
 jest.mock("expo-router", () => ({
   router: {
@@ -11,18 +10,22 @@ jest.mock("expo-router", () => ({
   },
 }));
 
-describe("Launches", () => {
+describe("Favourites", () => {
   let tree: RenderAPI;
 
   beforeEach(() => {
-    tree = renderWithProviders(<Launches launches={launchesMock} />, { store });
+    mockUseFavourites({
+      favouriteFlightNumbers: [
+        launchesMock[0].flight_number,
+        launchesMock[1].flight_number,
+      ],
+      favouriteLaunches: launchesMock,
+    });
+
+    tree = render(<Favourites favourites={launchesMock} />);
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("renders the launches list", () => {
+  it("should render the list of favourite launches", () => {
     const { getByText, getByTestId } = tree;
 
     const missionName = getByText("Crew-1");

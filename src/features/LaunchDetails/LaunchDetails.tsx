@@ -1,17 +1,17 @@
 import { ScrollView, Text, View } from "react-native";
 import { styles } from "./styles";
 import { Image } from "expo-image";
-import { Section } from "../../src/components/Section";
+import { Section } from "../../components/Section";
 import { LaunchDetailsProps } from "./types";
-import { MissionTag } from "../../src/components/MissionTag";
+import { MissionTag } from "../../components/MissionTag";
 import moment from "moment";
-import { FavouriteIcon } from "../../src/components/FavouriteIcon";
-import { useFavourites } from "../../src/hooks/useFavourites";
+import { FavouriteIcon } from "../../components/FavouriteIcon";
+import { useFavourites } from "../../hooks/useFavourites";
 
 export const LaunchDetails = ({ launch }: LaunchDetailsProps) => {
   const { favouriteFlightNumbers, toggleFavourites } = useFavourites();
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="launchDetailsContainer">
       <Image
         style={styles.image}
         source={{ uri: launch.links.flickr_images[0] }}

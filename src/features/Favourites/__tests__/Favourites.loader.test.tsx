@@ -1,8 +1,8 @@
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
-import { Favourites } from "../Favourites";
-import { launchesMock } from "../../../../src/__mocks__/launches";
+import { FavouritesLoader } from "../Favourites.loader";
+import { launchesMock } from "../../../__mocks__/launches";
 import { router } from "expo-router";
-import { mockUseFavourites } from "../../../../src/hooks/useFavourites/__mocks__/mockUseFavourites";
+import { mockUseFavourites } from "../../../hooks/useFavourites/__mocks__/mockUseFavourites";
 
 jest.mock("expo-router", () => ({
   router: {
@@ -10,7 +10,7 @@ jest.mock("expo-router", () => ({
   },
 }));
 
-describe("Favourites", () => {
+describe("FavouritesLoader", () => {
   let tree: RenderAPI;
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe("Favourites", () => {
       favouriteLaunches: launchesMock,
     });
 
-    tree = render(<Favourites favourites={launchesMock} />);
+    tree = render(<FavouritesLoader />);
   });
 
   it("should render the list of favourite launches", () => {

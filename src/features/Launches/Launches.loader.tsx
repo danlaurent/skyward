@@ -1,6 +1,6 @@
 import { Launches } from "./Launches";
-import { useGetPastLaunchesQuery } from "../../../src/services/spaceX";
-import { Layout } from "../../../src/components/Layout";
+import { useGetPastLaunchesQuery } from "../../services/spaceX";
+import { Layout } from "../../components/Layout";
 
 export const LaunchesLoader = () => {
   const { data, error, isLoading, refetch } = useGetPastLaunchesQuery(null);

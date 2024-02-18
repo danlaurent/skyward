@@ -1,9 +1,9 @@
 import { RenderAPI, fireEvent } from "@testing-library/react-native";
 import { LaunchDetails } from "../LaunchDetails";
-import { launchesMock } from "../../../src/__mocks__/launches";
-import { renderWithProviders } from "../../../src/utils/tests/renderWithProviders";
-import { store } from "../../../src/state/store";
-import { mockUseFavourites } from "../../../src/hooks/useFavourites/__mocks__/mockUseFavourites";
+import { launchesMock } from "../../../__mocks__/launches";
+import { renderWithProviders } from "../../../utils/tests/renderWithProviders";
+import { store } from "../../../state/store";
+import { mockUseFavourites } from "../../../hooks/useFavourites/__mocks__/mockUseFavourites";
 
 const launchMock = launchesMock[0];
 const toggleFavouritesMock = jest.fn();

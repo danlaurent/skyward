@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { FavouritesProps } from "./types";
 import { styles } from "./styles";
-import { LaunchesList } from "../../../src/components/LaunchesList";
+import { LaunchesList } from "../../components/LaunchesList";
 import { router } from "expo-router";
 
 export const Favourites = ({ favourites }: FavouritesProps) => (

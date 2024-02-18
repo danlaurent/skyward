@@ -1,6 +1,6 @@
 import { Favourites } from "./Favourites";
-import { Layout } from "../../../src/components/Layout";
-import { useFavourites } from "../../../src/hooks/useFavourites";
+import { Layout } from "../../components/Layout";
+import { useFavourites } from "../../hooks/useFavourites";
 
 export const FavouritesLoader = () => {
   const { favouriteLaunches } = useFavourites();

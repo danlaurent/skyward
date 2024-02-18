@@ -16,6 +16,7 @@ export const FavouriteIcon = ({
     testID={testID}
   >
     <MaterialIcons
+      testID={isFavourite ? "star" : "star-border"}
       name={isFavourite ? "star" : "star-border"}
       size={32}
       color={text.light}

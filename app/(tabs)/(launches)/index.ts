@@ -1,3 +1,3 @@
-import { LaunchesLoader } from "./Launches.loader";
+import { LaunchesLoader } from "../../../src/features/Launches/Launches.loader";
 
 export default LaunchesLoader;

@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { LaunchDetails } from "./LaunchDetails";
-import { useGetOneLaunchQuery } from "../../src/services/spaceX";
-import { Layout } from "../../src/components/Layout";
+import { useGetOneLaunchQuery } from "../../services/spaceX";
+import { Layout } from "../../components/Layout";
 
 export const LaunchDetailsLoader = () => {
   const { flightNumber } = useLocalSearchParams();
