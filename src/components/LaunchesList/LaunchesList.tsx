@@ -15,6 +15,7 @@ export const LaunchesList = ({
 
   return (
     <FlashList
+      testID="launchesList"
       data={launches}
       renderItem={({ item }) => (
         <LaunchCard
