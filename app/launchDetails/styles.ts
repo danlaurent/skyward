@@ -33,4 +33,12 @@ export const styles = StyleSheet.create({
   missionTagContainer: {
     marginBottom: 24,
   },
+  rocketAndTagContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  favouriteIcon: {
+    marginBottom: 24,
+  },
 });

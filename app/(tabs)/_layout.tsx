@@ -33,6 +33,15 @@ const TabsLayout = () => (
         ),
       }}
     />
+    <Tabs.Screen
+      name="favourites/index"
+      options={{
+        title: "Favourites",
+        tabBarIcon: ({ size, color }) => (
+          <MaterialIcons name="star" size={size} color={color} />
+        ),
+      }}
+    />
   </Tabs>
 );
 

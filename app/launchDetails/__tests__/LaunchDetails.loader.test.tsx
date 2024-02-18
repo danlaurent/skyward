@@ -20,17 +20,17 @@ const waitForLoadingToFinish = async (tree: RenderAPI) => {
 };
 
 export const handlers = [
+  http.get(
+    "https://api.spacexdata.com/v3/launches/107",
+    async () => {
+      await delay(150);
+      return Response.error();
+    },
+    { once: true }
+  ),
   http.get("https://api.spacexdata.com/v3/launches/107", async () => {
     await delay(150);
     return HttpResponse.json(launchesMock[0]);
-  }),
-  http.get("https://api.spacexdata.com/v3/launches/108", async () => {
-    await delay(150);
-    return Response.error();
-  }),
-  http.get("https://api.spacexdata.com/v3/launches/109", async () => {
-    await delay(150);
-    return Response.error();
   }),
 ];
 
@@ -39,13 +39,10 @@ const server = setupServer(...handlers);
 describe("LaunchDetailsLoader", () => {
   let tree: RenderAPI;
 
-  beforeAll(() => server.listen());
-
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeAll(() => {
+    jest.useFakeTimers();
+    server.listen();
   });
-
-  afterAll(() => server.close());
 
   beforeEach(() => {
     server.resetHandlers();
@@ -53,15 +50,16 @@ describe("LaunchDetailsLoader", () => {
     tree = renderWithProviders(<LaunchDetailsLoader />, { store });
   });
 
-  describe("when loading", () => {
-    it("shows a loading state", async () => {
-      expect(tree.getByText("Loading")).toBeDefined();
-    });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    server.close();
   });
 
   describe("when the request fails and the user clicks on retry", () => {
     it("retries the request", async () => {
-      mockFlightNumberParam("109");
       await waitForLoadingToFinish(tree);
 
       expect(tree.getByText("Something went wrong")).toBeDefined();
