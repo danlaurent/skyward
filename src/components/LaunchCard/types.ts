@@ -1,5 +1,6 @@
-export interface ListItemProps {
+export interface LaunchCardProps {
   name: string;
+  flightNumber: number;
   date: string;
   missionTag?: string;
   launchImage?: string;
@@ -7,4 +8,6 @@ export interface ListItemProps {
   testID?: string;
   missionTagImageTestID?: string;
   imageBackgroundTestID?: string;
+  favourite?: boolean;
+  onFavouritePress: (flightNumber: number) => void;
 }
